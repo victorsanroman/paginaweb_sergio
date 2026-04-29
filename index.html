@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sergio Pazos — Asesor de Nutrición & Fitness</title>
+  <meta name="description" content="Asesorías 1:1 personalizadas de nutrición y entrenamiento. Transforma tu cuerpo con un plan diseñado para ti. Galicia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #0A0A0A;
+      --dark:    #111111;
+      --card:    #1A1A1A;
+      --border:  #2A2A2A;
+      --orange:  #FF6B00;
+      --amber:   #F5A623;
+      --white:   #FFFFFF;
+      --gray:    #888888;
+      --light:   #CCCCCC;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--orange), var(--amber));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: var(--light); text-decoration: none; font-size: 0.9rem;
+      font-weight: 500; letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--orange), var(--amber));
+      color: var(--black) !important;
+      padding: 10px 22px; border-radius: 6px;
+      font-weight: 700 !important;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 120px 80px 80px;
+      gap: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,107,0,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -100px; left: 10%;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-text { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,107,0,0.12); border: 1px solid rgba(255,107,0,0.3);
+      border-radius: 50px; padding: 8px 16px;
+      font-size: 0.8rem; font-weight: 600; color: var(--amber);
+      letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-badge span { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      line-height: 1.0;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .hero-title .accent {
+      background: linear-gradient(135deg, var(--orange), var(--amber));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-handle {
+      font-size: 1rem; color: var(--gray); margin-bottom: 24px;
+      font-weight: 500;
+    }
+    .hero-handle a { color: var(--orange); text-decoration: none; }
+    .hero-desc {
+      font-size: 1.1rem; color: var(--light);
+      max-width: 480px; margin-bottom: 40px;
+      font-weight: 300; line-height: 1.7;
+    }
+
+    .hero-stats {
+      display: flex; gap: 40px; margin-bottom: 40px;
+    }
+    .stat-item { text-align: left; }
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem; letter-spacing: 1px;
+      background: linear-gradient(135deg, var(--orange), var(--amber));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat-label { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
+    .stat-platform { font-size: 0.7rem; color: var(--orange); margin-top: 2px; }
+
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block; padding: 16px 36px;
+      background: linear-gradient(135deg, var(--orange), var(--amber));
+      color: var(--black); font-weight: 800; font-size: 0.95rem;
+      border-radius: 8px; text-decoration: none; letter-spacing: 0.5px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(255,107,0,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(255,107,0,0.5); }
+    .btn-secondary {
+      display: inline-block; padding: 16px 36px;
+      border: 1.5px solid var(--border); color: var(--white);
+      font-weight: 600; font-size: 0.95rem; border-radius: 8px;
+      text-decoration: none; letter-spacing: 0.5px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* ── HERO PROFILE ── */
+    .hero-visual { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+
+    .profile-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      width: 100%;
+      max-width: 380px;
+      position: relative;
+      overflow: hidden;
+    }
+    .profile-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--orange), var(--amber));
+    }
+    .profile-card-header {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
+    }
+    .profile-avatar-wrap {
+      position: relative; flex-shrink: 0;
+    }
+    .profile-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      border: 3px solid transparent;
+      background: linear-gradient(var(--card), var(--card)) padding-box,
+                  linear-gradient(135deg, var(--orange), var(--amber)) border-box;
+      object-fit: cover;
+    }
+    .ig-ring {
+      position: absolute; inset: -4px; border-radius: 50%;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      z-index: -1;
+    }
+    .profile-info { flex: 1; }
+    .profile-name { font-weight: 700; font-size: 1rem; }
+    .profile-username { font-size: 0.8rem; color: var(--gray); margin-top: 2px; }
+    .profile-platform {
+      display: flex; align-items: center; gap: 6px;
+      margin-top: 6px;
+      font-size: 0.75rem; color: var(--orange); font-weight: 600;
+    }
+    .ig-icon { font-size: 0.9rem; }
+
+    .profile-card-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
+      border-radius: 10px; overflow: hidden; margin-bottom: 20px;
+    }
+    .pstat {
+      background: var(--black); padding: 14px 8px; text-align: center;
+    }
+    .pstat-n { font-weight: 700; font-size: 1.05rem; }
+    .pstat-l { font-size: 0.7rem; color: var(--gray); margin-top: 2px; }
+
+    .profile-card-bio {
+      font-size: 0.85rem; color: var(--light); line-height: 1.5;
+      padding-bottom: 16px; border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+    .profile-card-bio strong { color: var(--orange); }
+
+    .photo-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
+      border-radius: 8px; overflow: hidden;
+    }
+    .photo-grid img {
+      width: 100%; aspect-ratio: 1; object-fit: cover;
+      transition: opacity 0.2s;
+    }
+    .photo-grid img:hover { opacity: 0.8; }
+
+    /* TikTok badge */
+    .tiktok-badge {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px 24px;
+      display: flex; align-items: center; gap: 16px;
+      width: 100%; max-width: 380px;
+    }
+    .tiktok-icon {
+      font-size: 1.8rem;
+    }
+    .tiktok-info { flex: 1; }
+    .tiktok-name { font-weight: 700; font-size: 0.95rem; }
+    .tiktok-stats { font-size: 0.8rem; color: var(--gray); margin-top: 4px; }
+    .tiktok-stats strong { color: var(--amber); }
+
+    /* ── SECTION BASE ── */
+    section { padding: 100px 80px; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      letter-spacing: 2px; line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .section-desc {
+      font-size: 1.05rem; color: var(--light); max-width: 600px;
+      font-weight: 300; line-height: 1.7;
+    }
+
+    /* ── ABOUT ── */
+    #sobre-mi {
+      background: var(--dark);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .about-img-wrap { position: relative; }
+    .about-img {
+      width: 100%; border-radius: 16px; object-fit: cover;
+      aspect-ratio: 4/5;
+      border: 1px solid var(--border);
+    }
+    .about-tag {
+      position: absolute; bottom: 24px; left: -20px;
+      background: linear-gradient(135deg, var(--orange), var(--amber));
+      color: var(--black); font-weight: 800; font-size: 0.85rem;
+      padding: 12px 20px; border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(255,107,0,0.4);
+    }
+    .about-points { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+    .about-point {
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .about-point-icon {
+      width: 40px; height: 40px; border-radius: 8px; flex-shrink: 0;
+      background: rgba(255,107,0,0.1); border: 1px solid rgba(255,107,0,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .about-point-text { font-size: 0.95rem; color: var(--light); }
+    .about-point-text strong { color: var(--white); display: block; margin-bottom: 4px; }
+
+    /* ── SERVICES ── */
+    #servicios { text-align: center; }
+    #servicios .section-desc { margin: 0 auto 60px; }
+
+    .service-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      max-width: 1000px; margin: 0 auto 60px;
+    }
+    .service-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px 24px;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .service-card:hover { border-color: var(--orange); transform: translateY(-4px); }
+    .service-card.featured {
+      border-color: var(--orange);
+      background: linear-gradient(135deg, rgba(255,107,0,0.08), rgba(245,166,35,0.05));
+    }
+    .service-card.featured::before {
+      content: 'MÁS POPULAR';
+      position: absolute; top: 16px; right: 16px;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px;
+      color: var(--black); background: linear-gradient(135deg, var(--orange), var(--amber));
+      padding: 4px 10px; border-radius: 4px;
+    }
+    .service-icon {
+      font-size: 2.5rem; margin-bottom: 20px; display: block;
+    }
+    .service-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem; letter-spacing: 1px; margin-bottom: 12px;
+    }
+    .service-desc { font-size: 0.9rem; color: var(--light); line-height: 1.6; margin-bottom: 24px; }
+    .service-features { list-style: none; display: flex; flex-direction: column; gap: 10px; text-align: left; margin-bottom: 28px; }
+    .service-features li {
+      font-size: 0.85rem; color: var(--light);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .service-features li::before { content: '✓'; color: var(--orange); font-weight: 700; }
+    .service-cta {
+      display: block; padding: 12px 24px;
+      background: linear-gradient(135deg, var(--orange), var(--amber));
+      color: var(--black); font-weight: 700; font-size: 0.9rem;
+      border-radius: 8px; text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .service-cta:hover { opacity: 0.9; }
+    .service-cta.outline {
+      background: transparent; color: var(--white);
+      border: 1.5px solid var(--border);
+    }
+    .service-cta.outline:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* ── GALLERY ── */
+    #galeria { background: var(--dark); }
+    .gallery-header { margin-bottom: 40px; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      gap: 12px;
+    }
+    .gallery-item {
+      border-radius: 12px; overflow: hidden;
+      background: var(--card); border: 1px solid var(--border);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .gallery-item:hover { transform: scale(1.02); border-color: var(--orange); }
+    .gallery-item:first-child {
+      grid-column: span 2; grid-row: span 2;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; min-height: 200px;
+    }
+    .gallery-item:first-child img { min-height: 400px; }
+    .gallery-ig-link {
+      grid-column: span 2;
+      background: linear-gradient(135deg, rgba(255,107,0,0.1), rgba(245,166,35,0.05));
+      border: 1px dashed rgba(255,107,0,0.4);
+      border-radius: 12px; padding: 32px;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; transition: border-color 0.2s;
+    }
+    .gallery-ig-link:hover { border-color: var(--orange); }
+    .gallery-ig-link-inner { text-align: center; }
+    .gallery-ig-link-inner .ig-big { font-size: 2.5rem; margin-bottom: 8px; }
+    .gallery-ig-link-inner p { font-size: 0.95rem; color: var(--light); }
+    .gallery-ig-link-inner strong { color: var(--orange); }
+
+    /* ── FORM CTA ── */
+    #asesoria {
+      background: var(--black);
+      text-align: center;
+    }
+    .form-cta-box {
+      max-width: 700px; margin: 0 auto;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 24px; padding: 60px 48px;
+      position: relative; overflow: hidden;
+    }
+    .form-cta-box::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--orange), var(--amber));
+    }
+    .form-cta-box .section-title { margin-bottom: 16px; }
+    .form-cta-box p {
+      font-size: 1rem; color: var(--light); margin-bottom: 40px; line-height: 1.7;
+    }
+    .form-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-bottom: 40px; text-align: left;
+    }
+    .form-step { display: flex; flex-direction: column; gap: 8px; }
+    .form-step-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange), var(--amber));
+      color: var(--black); font-weight: 800; font-size: 0.85rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .form-step-title { font-weight: 600; font-size: 0.9rem; }
+    .form-step-desc { font-size: 0.8rem; color: var(--gray); }
+    .form-cta-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 18px 44px;
+      background: linear-gradient(135deg, var(--orange), var(--amber));
+      color: var(--black); font-weight: 800; font-size: 1rem;
+      border-radius: 10px; text-decoration: none;
+      box-shadow: 0 6px 30px rgba(255,107,0,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .form-cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(255,107,0,0.6); }
+
+    /* ── CONTACT ── */
+    #contacto {
+      background: var(--dark);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 16px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px 20px;
+      text-decoration: none; color: var(--white);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .contact-link:hover { border-color: var(--orange); transform: translateX(6px); }
+    .contact-link-icon {
+      width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+      background: rgba(255,107,0,0.1); border: 1px solid rgba(255,107,0,0.2);
+      display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+    }
+    .contact-link-info { flex: 1; }
+    .contact-link-name { font-weight: 600; font-size: 0.9rem; }
+    .contact-link-val { font-size: 0.8rem; color: var(--gray); margin-top: 2px; }
+    .contact-link-arrow { color: var(--gray); font-size: 1rem; }
+
+    .contact-form-alt {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 40px;
+    }
+    .contact-form-alt h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem; letter-spacing: 1px; margin-bottom: 8px;
+    }
+    .contact-form-alt p { font-size: 0.9rem; color: var(--light); margin-bottom: 28px; }
+    .contact-form-alt .btn-primary { width: 100%; text-align: center; display: block; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black); border-top: 1px solid var(--border);
+      padding: 40px 80px; display: flex;
+      align-items: center; justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--orange), var(--amber));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .footer-copy { font-size: 0.8rem; color: var(--gray); }
+    .footer-social { display: flex; gap: 16px; }
+    .footer-social a {
+      width: 38px; height: 38px; border-radius: 8px;
+      background: var(--card); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+    .footer-social a:hover { border-color: var(--orange); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 48px; }
+      .hero-visual { order: -1; }
+      section { padding: 70px 24px; }
+      #sobre-mi, #contacto { grid-template-columns: 1fr; gap: 48px; }
+      .service-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item:first-child { grid-column: span 2; }
+      .gallery-ig-link { grid-column: span 2; }
+      .form-steps { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 20px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SERGIO PAZOS</div>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#asesoria" class="nav-cta">Empezar ahora</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge"><span></span>Asesor Nutrición & Fitness · Galicia</div>
+    <h1 class="hero-title">
+      SERGIO<br>
+      <span class="accent">PAZOS</span>
+    </h1>
+    <p class="hero-handle">@sergiopazoss_ · <a href="https://instagram.com/sergiopazoss_" target="_blank">Instagram</a> · <a href="https://tiktok.com/@sergiopazoss_" target="_blank">TikTok</a></p>
+    <p class="hero-desc">
+      Planes de nutrición y entrenamiento 100% personalizados.
+      Te acompaño en cada paso de tu transformación con asesorías 1:1 adaptadas a tu vida real.
+    </p>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-number">804</div>
+        <div class="stat-label">Seguidores</div>
+        <div class="stat-platform">📸 Instagram</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">1.070</div>
+        <div class="stat-label">Seguidores</div>
+        <div class="stat-platform">🎵 TikTok</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">349K</div>
+        <div class="stat-label">Likes totales</div>
+        <div class="stat-platform">🔥 TikTok</div>
+      </div>
+    </div>
+
+    <div class="hero-buttons">
+      <a href="#asesoria" class="btn-primary">Quiero mi asesoría 1:1</a>
+      <a href="#sobre-mi" class="btn-secondary">Saber más</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <!-- Instagram profile card -->
+    <div class="profile-card">
+      <div class="profile-card-header">
+        <div class="profile-avatar-wrap">
+          <div class="ig-ring"></div>
+          <img src="assets/avatar_instagram.jpg" alt="Sergio Pazos" class="profile-avatar"
+               onerror="this.src='https://ui-avatars.com/api/?name=Sergio+Pazos&background=FF6B00&color=000&size=72'" />
+        </div>
+        <div class="profile-info">
+          <div class="profile-name">Sergio Pazos</div>
+          <div class="profile-username">@sergiopazoss_</div>
+          <div class="profile-platform"><span class="ig-icon">📸</span> Instagram</div>
+        </div>
+      </div>
+
+      <div class="profile-card-stats">
+        <div class="pstat">
+          <div class="pstat-n">4</div>
+          <div class="pstat-l">Posts</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-n">804</div>
+          <div class="pstat-l">Seguidores</div>
+        </div>
+        <div class="pstat">
+          <div class="pstat-n">Galicia</div>
+          <div class="pstat-l">Ubicación</div>
+        </div>
+      </div>
+
+      <div class="profile-card-bio">
+        <strong>Asesorías 1:1</strong> de nutrición y fitness personalizadas.
+        Transformación real, resultados reales. 💪
+      </div>
+
+      <div class="photo-grid">
+        <img src="assets/photo_1.jpg" alt="Post 1" onerror="this.style.background='#1A1A1A'" />
+        <img src="assets/photo_2.jpg" alt="Post 2" onerror="this.style.background='#1A1A1A'" />
+        <img src="assets/photo_3.jpg" alt="Post 3" onerror="this.style.background='#1A1A1A'" />
+      </div>
+    </div>
+
+    <!-- TikTok badge -->
+    <div class="tiktok-badge">
+      <div class="tiktok-icon">🎵</div>
+      <div class="tiktok-info">
+        <div class="tiktok-name">@sergiopazoss_ en TikTok</div>
+        <div class="tiktok-stats">
+          <strong>1.070</strong> seguidores · <strong>349K</strong> likes
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi">
+  <div class="about-img-wrap">
+    <img src="assets/photo_1.jpg" alt="Sergio Pazos" class="about-img" />
+    <div class="about-tag">Asesor Certificado 🏆</div>
+  </div>
+  <div>
+    <p class="section-label">Sobre mí</p>
+    <h2 class="section-title">NUTRICIÓN &<br><span style="background:linear-gradient(135deg,#FF6B00,#F5A623);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">RESULTADOS REALES</span></h2>
+    <p class="section-desc">
+      Soy Sergio, de Galicia, y me apasiona ayudar a las personas a transformar su cuerpo y sus hábitos.
+      A través de mis asesorías 1:1, diseño planes de nutrición y entrenamiento completamente personalizados
+      que se adaptan a tu ritmo de vida.
+    </p>
+    <div class="about-points">
+      <div class="about-point">
+        <div class="about-point-icon">🥗</div>
+        <div class="about-point-text">
+          <strong>Plan de nutrición personalizado</strong>
+          Dieta adaptada a tus objetivos, gustos y rutina diaria. Sin restricciones absurdas.
+        </div>
+      </div>
+      <div class="about-point">
+        <div class="about-point-icon">💪</div>
+        <div class="about-point-text">
+          <strong>Entrenamiento a medida</strong>
+          Rutinas diseñadas para tu nivel, tiempo disponible y equipamiento.
+        </div>
+      </div>
+      <div class="about-point">
+        <div class="about-point-icon">📊</div>
+        <div class="about-point-text">
+          <strong>Seguimiento continuo</strong>
+          Ajustes semanales y apoyo constante para que nunca te quedes sin respuesta.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <p class="section-label">Servicios</p>
+  <h2 class="section-title">¿QUÉ INCLUYE<br>TU ASESORÍA?</h2>
+  <p class="section-desc">Un acompañamiento completo, no un simple plan en PDF. Trabajo contigo de forma personalizada.</p>
+
+  <div class="service-grid">
+    <div class="service-card">
+      <span class="service-icon">🚀</span>
+      <div class="service-name">Arranque Rápido</div>
+      <p class="service-desc">Ideal si quieres empezar con una base sólida y ver resultados en las primeras semanas.</p>
+      <ul class="service-features">
+        <li>Encuesta previa detallada</li>
+        <li>Plan de nutrición inicial</li>
+        <li>Rutina de entrenamiento</li>
+        <li>Soporte por WhatsApp</li>
+      </ul>
+      <a href="https://forms.gle/iib6z8X16PiU5TNH7" target="_blank" class="service-cta outline">Solicitar info</a>
+    </div>
+
+    <div class="service-card featured">
+      <span class="service-icon">⚡</span>
+      <div class="service-name">Asesoría 1:1</div>
+      <p class="service-desc">El pack completo. Seguimiento personalizado, ajustes continuos y atención prioritaria.</p>
+      <ul class="service-features">
+        <li>Análisis completo de tu situación</li>
+        <li>Plan de nutrición + entrenamiento</li>
+        <li>Seguimiento semanal</li>
+        <li>Ajustes progresivos</li>
+        <li>Soporte directo 24/7</li>
+      </ul>
+      <a href="https://forms.gle/iib6z8X16PiU5TNH7" target="_blank" class="service-cta">Empezar ahora</a>
+    </div>
+
+    <div class="service-card">
+      <span class="service-icon">🎯</span>
+      <div class="service-name">Objetivo Concreto</div>
+      <p class="service-desc">¿Tienes un objetivo específico? Definición, volumen, mejorar rendimiento... lo trabajamos.</p>
+      <ul class="service-features">
+        <li>Plan focalizado en tu meta</li>
+        <li>Periodización específica</li>
+        <li>Revisiones periódicas</li>
+        <li>Recursos y guías extra</li>
+      </ul>
+      <a href="https://forms.gle/iib6z8X16PiU5TNH7" target="_blank" class="service-cta outline">Solicitar info</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="gallery-header">
+    <p class="section-label">Galería</p>
+    <h2 class="section-title">INSTAGRAM</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="assets/photo_1.jpg" alt="Post Instagram 1" />
+    </div>
+    <div class="gallery-item">
+      <img src="assets/photo_2.jpg" alt="Post Instagram 2" />
+    </div>
+    <div class="gallery-item">
+      <img src="assets/photo_3.jpg" alt="Post Instagram 3" />
+    </div>
+    <div class="gallery-item">
+      <img src="assets/photo_4.jpg" alt="Post Instagram 4" />
+    </div>
+    <a href="https://instagram.com/sergiopazoss_" target="_blank" class="gallery-ig-link">
+      <div class="gallery-ig-link-inner">
+        <div class="ig-big">📸</div>
+        <p>Ver más en <strong>@sergiopazoss_</strong></p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FORM CTA -->
+<section id="asesoria">
+  <div class="form-cta-box">
+    <p class="section-label" style="text-align:center">Primer paso</p>
+    <h2 class="section-title">EMPIEZA TU<br><span style="background:linear-gradient(135deg,#FF6B00,#F5A623);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">TRANSFORMACIÓN</span></h2>
+    <p>Rellena la encuesta previa — tarda menos de 5 minutos y me permite entender tu situación real para diseñar tu plan desde el primer día.</p>
+
+    <div class="form-steps">
+      <div class="form-step">
+        <div class="form-step-num">1</div>
+        <div class="form-step-title">Rellena la encuesta</div>
+        <div class="form-step-desc">Cuéntame tus datos, objetivos y rutina actual</div>
+      </div>
+      <div class="form-step">
+        <div class="form-step-num">2</div>
+        <div class="form-step-title">Evalúo tu caso</div>
+        <div class="form-step-desc">Analizo tu situación y preparo tu propuesta personalizada</div>
+      </div>
+      <div class="form-step">
+        <div class="form-step-num">3</div>
+        <div class="form-step-title">Empezamos</div>
+        <div class="form-step-desc">Recibes tu plan y arrancamos juntos desde el primer día</div>
+      </div>
+    </div>
+
+    <a href="https://forms.gle/iib6z8X16PiU5TNH7" target="_blank" class="form-cta-btn">
+      📋 Rellenar encuesta previa
+    </a>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div>
+    <p class="section-label">Contacto</p>
+    <h2 class="section-title">¿TIENES<br>DUDAS?</h2>
+    <p class="section-desc">Escríbeme por cualquiera de estos canales y te respondo lo antes posible.</p>
+
+    <div class="contact-links">
+      <a href="mailto:ser24pf7@gmail.com" class="contact-link">
+        <div class="contact-link-icon">✉️</div>
+        <div class="contact-link-info">
+          <div class="contact-link-name">Email</div>
+          <div class="contact-link-val">ser24pf7@gmail.com</div>
+        </div>
+        <div class="contact-link-arrow">→</div>
+      </a>
+      <a href="https://instagram.com/sergiopazoss_" target="_blank" class="contact-link">
+        <div class="contact-link-icon">📸</div>
+        <div class="contact-link-info">
+          <div class="contact-link-name">Instagram DM</div>
+          <div class="contact-link-val">@sergiopazoss_</div>
+        </div>
+        <div class="contact-link-arrow">→</div>
+      </a>
+      <a href="https://tiktok.com/@sergiopazoss_" target="_blank" class="contact-link">
+        <div class="contact-link-icon">🎵</div>
+        <div class="contact-link-info">
+          <div class="contact-link-name">TikTok</div>
+          <div class="contact-link-val">@sergiopazoss_</div>
+        </div>
+        <div class="contact-link-arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="contact-form-alt">
+    <h3>SOLICITA TU<br>ASESORÍA AHORA</h3>
+    <p>Rellena la encuesta previa y en menos de 24h te contacto con tu propuesta personalizada.</p>
+    <a href="https://forms.gle/iib6z8X16PiU5TNH7" target="_blank" class="btn-primary">
+      Ir a la encuesta previa 📋
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">SERGIO PAZOS</div>
+  <div class="footer-copy">© 2025 Sergio Pazos · Asesorías 1:1 Nutrición & Fitness</div>
+  <div class="footer-social">
+    <a href="https://instagram.com/sergiopazoss_" target="_blank">📸</a>
+    <a href="https://tiktok.com/@sergiopazoss_" target="_blank">🎵</a>
+    <a href="mailto:ser24pf7@gmail.com">✉️</a>
+  </div>
+</footer>
+
+</body>
+</html>
