@@ -346,42 +346,57 @@
     }
     .service-cta.outline:hover { border-color: var(--orange); color: var(--orange); }
 
-    /* ── GALLERY ── */
-    #galeria { background: var(--dark); }
-    .gallery-header { margin-bottom: 40px; }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: auto;
-      gap: 12px;
+    /* ── TRANSFORMACIÓN ── */
+    #transformacion { background: var(--dark); }
+    .transf-header { margin-bottom: 48px; }
+
+    .transf-before-after {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      margin-bottom: 16px;
     }
-    .gallery-item {
-      border-radius: 12px; overflow: hidden;
-      background: var(--card); border: 1px solid var(--border);
-      transition: transform 0.2s, border-color 0.2s;
+    .transf-card {
+      position: relative; border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--border);
     }
-    .gallery-item:hover { transform: scale(1.02); border-color: var(--orange); }
-    .gallery-item:first-child {
-      grid-column: span 2; grid-row: span 2;
+    .transf-card img {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top;
+      display: block;
     }
-    .gallery-item img {
-      width: 100%; height: 100%; object-fit: cover;
-      display: block; min-height: 200px;
+    .transf-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 20px 20px 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .gallery-item:first-child img { min-height: 400px; }
-    .gallery-ig-link {
-      grid-column: span 2;
-      background: linear-gradient(135deg, rgba(255,107,0,0.1), rgba(245,166,35,0.05));
-      border: 1px dashed rgba(255,107,0,0.4);
-      border-radius: 12px; padding: 32px;
-      display: flex; align-items: center; justify-content: center;
-      text-decoration: none; transition: border-color 0.2s;
+    .transf-label-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; letter-spacing: 2px;
     }
-    .gallery-ig-link:hover { border-color: var(--orange); }
-    .gallery-ig-link-inner { text-align: center; }
-    .gallery-ig-link-inner .ig-big { font-size: 2.5rem; margin-bottom: 8px; }
-    .gallery-ig-link-inner p { font-size: 0.95rem; color: var(--light); }
-    .gallery-ig-link-inner strong { color: var(--orange); }
+    .transf-card.antes .transf-label-text { color: var(--light); }
+    .transf-card.despues .transf-label-text {
+      background: linear-gradient(135deg, var(--orange), var(--amber));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .transf-label-tag {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; padding: 4px 10px;
+      border-radius: 4px; text-transform: uppercase;
+    }
+    .transf-card.antes .transf-label-tag { background: rgba(255,255,255,0.15); color: var(--light); }
+    .transf-card.despues .transf-label-tag {
+      background: linear-gradient(135deg, var(--orange), var(--amber)); color: var(--black); font-weight: 800;
+    }
+
+    .transf-extra {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .transf-extra-item {
+      border-radius: 12px; overflow: hidden; border: 1px solid var(--border);
+    }
+    .transf-extra-item img {
+      width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: top;
+      display: block; transition: transform 0.3s;
+    }
+    .transf-extra-item:hover img { transform: scale(1.03); }
 
     /* ── FORM CTA ── */
     #asesoria {
@@ -493,9 +508,7 @@
       section { padding: 70px 24px; }
       #sobre-mi, #contacto { grid-template-columns: 1fr; gap: 48px; }
       .service-grid { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-item:first-child { grid-column: span 2; }
-      .gallery-ig-link { grid-column: span 2; }
+      .transf-before-after, .transf-extra { grid-template-columns: 1fr; }
       .form-steps { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 20px; text-align: center; }
     }
@@ -509,7 +522,7 @@
   <ul class="nav-links">
     <li><a href="#sobre-mi">Sobre mí</a></li>
     <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#transformacion">Transformación</a></li>
     <li><a href="#asesoria" class="nav-cta">Empezar ahora</a></li>
   </ul>
 </nav>
@@ -611,16 +624,15 @@
 <!-- SOBRE MÍ -->
 <section id="sobre-mi">
   <div class="about-img-wrap">
-    <img src="assets/photo_1.jpg" alt="Sergio Pazos" class="about-img" />
-    <div class="about-tag">Asesor Certificado 🏆</div>
+    <img src="assets/despues.jpg" alt="Sergio Pazos" class="about-img" />
   </div>
   <div>
     <p class="section-label">Sobre mí</p>
     <h2 class="section-title">NUTRICIÓN &<br><span style="background:linear-gradient(135deg,#FF6B00,#F5A623);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">RESULTADOS REALES</span></h2>
     <p class="section-desc">
-      Soy Sergio, de Galicia, y me apasiona ayudar a las personas a transformar su cuerpo y sus hábitos.
-      A través de mis asesorías 1:1, diseño planes de nutrición y entrenamiento completamente personalizados
-      que se adaptan a tu ritmo de vida.
+      Soy Sergio y me apasiona ayudar a las personas a transformar su cuerpo y sus hábitos.
+      A través de mis asesorías 1:1, diseño planes de nutrición y entrenamiento en base a mi experiencia
+      completamente personalizados que se adaptan a tu ritmo de vida.
     </p>
     <div class="about-points">
       <div class="about-point">
@@ -697,31 +709,38 @@
   </div>
 </section>
 
-<!-- GALERÍA -->
-<section id="galeria">
-  <div class="gallery-header">
-    <p class="section-label">Galería</p>
-    <h2 class="section-title">INSTAGRAM</h2>
+<!-- TRANSFORMACIÓN -->
+<section id="transformacion">
+  <div class="transf-header">
+    <p class="section-label">Mi historia</p>
+    <h2 class="section-title">MI CAMBIO<br><span style="background:linear-gradient(135deg,#FF6B00,#F5A623);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">FÍSICO</span></h2>
+    <p class="section-desc">No te vendo algo que no he vivido. Este soy yo — antes y después de aplicar exactamente lo mismo que enseño en mis asesorías.</p>
   </div>
-  <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="assets/photo_1.jpg" alt="Post Instagram 1" />
-    </div>
-    <div class="gallery-item">
-      <img src="assets/photo_2.jpg" alt="Post Instagram 2" />
-    </div>
-    <div class="gallery-item">
-      <img src="assets/photo_3.jpg" alt="Post Instagram 3" />
-    </div>
-    <div class="gallery-item">
-      <img src="assets/photo_4.jpg" alt="Post Instagram 4" />
-    </div>
-    <a href="https://instagram.com/sergiopazoss_" target="_blank" class="gallery-ig-link">
-      <div class="gallery-ig-link-inner">
-        <div class="ig-big">📸</div>
-        <p>Ver más en <strong>@sergiopazoss_</strong></p>
+
+  <div class="transf-before-after">
+    <div class="transf-card antes">
+      <img src="assets/antes.jpg" alt="Sergio Pazos antes" />
+      <div class="transf-label">
+        <span class="transf-label-text">ANTES</span>
+        <span class="transf-label-tag">Punto de partida</span>
       </div>
-    </a>
+    </div>
+    <div class="transf-card despues">
+      <img src="assets/despues.jpg" alt="Sergio Pazos después" />
+      <div class="transf-label">
+        <span class="transf-label-text">DESPUÉS</span>
+        <span class="transf-label-tag">Resultado real</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="transf-extra">
+    <div class="transf-extra-item">
+      <img src="assets/espalda1.jpg" alt="Transformación espalda" />
+    </div>
+    <div class="transf-extra-item">
+      <img src="assets/espalda2.jpg" alt="Transformación espalda 2" />
+    </div>
   </div>
 </section>
 
